@@ -1,36 +1,51 @@
 #include <stdio.h>
-int main()
-{
- char supplierName[50];
- float price;
- float budget;
- int registered;
- int documentsComplete;
- printf("Enter supplier name: ");
- scanf("%49s", supplierName);
- printf("Enter tender price: ");
- scanf("%f", &price);
- printf("Enter available budget: ");
- scanf("%f", &budget);
- printf("Is supplier registered? (1=Yes, 0=No): ");
- scanf("%d", &registered);
- printf("Are all documents complete? (1=Yes, 0=No): ");
- scanf("%d", &documentsComplete);
- if (registered == 0 || documentsComplete == 0)
- {
- printf("\nSupplier: %s\n", supplierName);
+#include <string.h>
 
- printf("Status: Disqualified\n");
- }
- else if (price > budget)
- {
- printf("\nSupplier: %s\n", supplierName);
- printf("Status: Disqualified\n");
- }
- else
- {
- printf("\nSupplier: %s\n", supplierName);
- printf("Status: Qualified\n");
- }
- return 0;
+int main(void)
+{
+    char employeeName[50];
+    double basicSalary, allowances, deductions;
+    double grossSalary, netSalary;
+
+    const double HIGH_INCOME_THRESHOLD = 20000.00;
+
+    printf("EMPLOYEE SALARY CALCULATOR\n");
+    printf("==========================\n\n");
+
+    printf("Enter employee name: ");
+    fgets(employeeName, sizeof(employeeName), stdin);
+
+    /* Remove the newline character left by fgets */
+    employeeName[strcspn(employeeName, "\n")] = '\0';
+
+    printf("Enter basic salary: ");
+    scanf("%lf", &basicSalary);
+
+    printf("Enter allowances: ");
+    scanf("%lf", &allowances);
+
+    printf("Enter deductions: ");
+    scanf("%lf", &deductions);
+
+
+    grossSalary = basicSalary + allowances;
+
+
+    netSalary = grossSalary - deductions;
+
+    printf("\n--- Salary Summary ---\n");
+    printf("Employee: %s\n", employeeName);
+    printf("Gross Salary: NAD %.2f\n", grossSalary);
+    printf("Net Salary:   NAD %.2f\n", netSalary);
+
+    if (netSalary >= HIGH_INCOME_THRESHOLD)
+    {
+        printf("High Income\n");
+    }
+    else
+    {
+        printf("Standard Income\n");
+    }
+
+    return 0;
 }
