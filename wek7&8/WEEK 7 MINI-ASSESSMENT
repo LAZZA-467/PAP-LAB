@@ -1,0 +1,45 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char supplierName[50];
+    char email[50];
+    char phone[20];
+    char town[50];
+    char supplierNameCopy[50];
+    char searchName[50];
+
+    printf("Enter Supplier Name: ");
+    scanf(" %[^\n]s", supplierName);
+
+    printf("Enter Email: ");
+    scanf(" %[^\n]s", email);
+
+    printf("Enter Phone: ");
+    scanf(" %[^\n]s", phone);
+
+    printf("Enter Town: ");
+    scanf(" %[^\n]s", town);
+
+    printf("\n--- Supplier Information ---\n");
+    printf("Supplier Name : %s\n", supplierName);
+    printf("Email         : %s\n", email);
+    printf("Phone         : %s\n", phone);
+    printf("Town          : %s\n", town);
+
+    printf("\nLength of Supplier Name: %lu characters\n", strlen(supplierName));
+
+    strcpy(supplierNameCopy, supplierName);
+    printf("Copied Name Variable   : %s\n", supplierNameCopy);
+
+    printf("\nEnter a supplier name to search: ");
+    scanf(" %[^\n]s", searchName);
+
+    if (strcmp(supplierName, searchName) == 0) {
+        printf("Result: Supplier '%s' was found in the records!\n", searchName);
+    } else {
+        printf("Result: Supplier '%s' was not found.\n", searchName);
+    }
+
+    return 0;
+}
