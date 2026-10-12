@@ -1,0 +1,14 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    
+    char description[100] = "ABC Office Supplies ";
+
+    strcat(description, "operates in ");
+    strcat(description, "Windhoek.");
+
+    printf("%s\n", description);
+
+    return 0;
+}
