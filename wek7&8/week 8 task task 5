@@ -1,0 +1,40 @@
+#include <stdio.h>
+
+void displayMenu() {
+    printf("==================================\n");
+    printf("MUNICIPAL FINANCIAL MANAGEMENT\n");
+    printf("==================================\n");
+    printf("1. Calculate VAT\n");
+    printf("2. Calculate Salary\n");
+    printf("3. Calculate Budget\n");
+    printf("4. Exit\n");
+    printf("Enter choice: ");
+}
+
+int main() {
+    int choice;
+
+    do {
+        displayMenu();
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1:
+                printf("\n[Selected: Calculate VAT]\n\n");
+                break;
+            case 2:
+                printf("\n[Selected: Calculate Salary]\n\n");
+                break;
+            case 3:
+                printf("\n[Selected: Calculate Budget]\n\n");
+                break;
+            case 4:
+                printf("\nExiting system... Goodbye!\n");
+                break;
+            default:
+                printf("\nInvalid choice! Please select 1, 2, 3, or 4.\n\n");
+        }
+    } while (choice != 4);
+
+    return 0;
+}

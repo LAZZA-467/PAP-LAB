@@ -1,0 +1,188 @@
+#include <stdio.h>
+#include <string.h>
+
+// Function Prototypes
+void displayMenu();
+float calculateSalary(float basic, float housing, float transport);
+float calculateVAT(float amount);
+float calculateBudget(float revenue, float expenses);
+int searchEmployee(int id, int ids[], int size);
+
+// Menu handler functions
+void handleSalary();
+void handleVAT();
+void handleBudget();
+void handleSearchEmployee();
+void handleSupplierManagement();
+
+int main() {
+    int choice;
+
+    do {
+        displayMenu();
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1:
+                handleSalary();
+                break;
+            case 2:
+                handleVAT();
+                break;
+            case 3:
+                handleBudget();
+                break;
+            case 4:
+                handleSearchEmployee();
+                break;
+            case 5:
+                handleSupplierManagement();
+                break;
+            case 6:
+                printf("\nExiting Municipal Financial Management System. Goodbye!\n");
+                break;
+            default:
+                printf("\nInvalid choice! Please select an option between 1 and 6.\n");
+        }
+    } while (choice != 6);
+
+    return 0;
+}
+
+// --- Menu Display Function ---
+void displayMenu() {
+    printf("\n============================================\n");
+    printf("MUNICIPAL FINANCIAL MANAGEMENT SYSTEM\n");
+    printf("============================================\n");
+    printf("1. Calculate Employee Salary\n");
+    printf("2. Calculate VAT\n");
+    printf("3. Calculate Budget\n");
+    printf("4. Search Employee\n");
+    printf("5. Supplier Management\n");
+    printf("6. Exit\n");
+    printf("Enter choice: ");
+}
+
+// --- Calculation & Feature Functions ---
+
+float calculateSalary(float basic, float housing, float transport) {
+    return basic + housing + transport;
+}
+
+void handleSalary() {
+    float basic, housing, transport, gross;
+    printf("\n--- Calculate Employee Salary ---\n");
+    printf("Basic salary: ");
+    scanf("%f", &basic);
+    printf("Housing allowance: ");
+    scanf("%f", &housing);
+    printf("Transport allowance: ");
+    scanf("%f", &transport);
+
+    gross = calculateSalary(basic, housing, transport);
+    printf("Gross salary: %.2f\n", gross);
+}
+
+float calculateVAT(float amount) {
+    return amount * 0.15;
+}
+
+void handleVAT() {
+    float amount, vat;
+    printf("\n--- Calculate VAT (15%) ---\n");
+    printf("Enter amount: ");
+    scanf("%f", &amount);
+
+    vat = calculateVAT(amount);
+    printf("VAT: %.2f\n", vat);
+}
+
+float calculateBudget(float revenue, float expenses) {
+    return revenue - expenses;
+}
+
+void handleBudget() {
+    float revenue, expenses, result;
+    printf("\n--- Calculate Budget ---\n");
+    printf("Enter total revenue: ");
+    scanf("%f", &revenue);
+    printf("Enter total expenses: ");
+    scanf("%f", &expenses);
+
+    result = calculateBudget(revenue, expenses);
+    printf("Net Budget Amount: %.2f\n", result);
+
+    if (result > 0) {
+        printf("Status: SURPLUS\n");
+    } else if (result < 0) {
+        printf("Status: DEFICIT\n");
+    } else {
+        printf("Status: BALANCED\n");
+    }
+}
+
+int searchEmployee(int id, int ids[], int size) {
+    for (int i = 0; i < size; i++) {
+        if (ids[i] == id) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+void handleSearchEmployee() {
+    int employeeIDs[] = {101, 102, 103, 104, 105};
+    int size = sizeof(employeeIDs) / sizeof(employeeIDs[0]);
+    int searchID, result;
+
+    printf("\n--- Search Employee ---\n");
+    printf("Enter employee ID: ");
+    scanf("%d", &searchID);
+
+    result = searchEmployee(searchID, employeeIDs, size);
+
+    if (result != -1) {
+        printf("Employee found at position %d.\n", result);
+    } else {
+        printf("Employee not found.\n");
+    }
+}
+
+void handleSupplierManagement() {
+    char supplierName[50];
+    char email[50];
+    char phone[20];
+    char town[50];
+    char supplierNameCopy[50];
+    char searchName[50];
+
+    printf("\n--- Supplier Management ---\n");
+    printf("Enter Supplier Name: ");
+    scanf(" %[^\n]s", supplierName);
+    printf("Enter Email: ");
+    scanf(" %[^\n]s", email);
+    printf("Enter Phone: ");
+    scanf(" %[^\n]s", phone);
+    printf("Enter Town: ");
+    scanf(" %[^\n]s", town);
+
+    printf("\n[Supplier Information Recorded]\n");
+    printf("Supplier Name : %s\n", supplierName);
+    printf("Email         : %s\n", email);
+    printf("Phone         : %s\n", phone);
+    printf("Town          : %s\n", town);
+
+    printf("Length of Supplier Name: %lu characters\n", strlen(supplierName));
+
+    strcpy(supplierNameCopy, supplierName);
+    printf("Copied Name Variable   : %s\n", supplierNameCopy);
+
+    printf("Enter a supplier name to search: ");
+    scanf(" %[^\n]s", searchName);
+
+    if (strcmp(supplierName, searchName) == 0) {
+        printf("Result: Supplier '%s' was found in the records!\n", searchName);
+    } else {
+        printf("Result: Supplier '%s' was not found.\n", searchName);
+    }
+}

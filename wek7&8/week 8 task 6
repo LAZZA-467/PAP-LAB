@@ -1,0 +1,30 @@
+#include <stdio.h>
+
+// Function definition to search for an employee ID
+int searchEmployee(int id, int ids[], int size) {
+    for (int i = 0; i < size; i++) {
+        if (ids[i] == id) {
+            return i; // Return the position (index) where the ID is found
+        }
+    }
+    return -1; // Return -1 if the ID is not found in the array
+}
+
+int main() {
+    int employeeIDs[] = {101, 102, 103, 104, 105};
+    int size = sizeof(employeeIDs) / sizeof(employeeIDs[0]);
+    int searchID, result;
+
+    printf("Enter employee ID: ");
+    scanf("%d", &searchID);
+
+    result = searchEmployee(searchID, employeeIDs, size);
+
+    if (result != -1) {
+        printf("Employee found at position %d.\n", result);
+    } else {
+        printf("Employee not found.\n");
+    }
+
+    return 0;
+}
