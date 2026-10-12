@@ -3,8 +3,8 @@
 
 int main(void)
 {
-    char supplierName[100] = "";   /* stored supplier name */
-    char supplierCode[30]  = "";   /* stored supplier code */
+    char supplierName[100] = "";   
+    char supplierCode[30]  = "";   
     char tempName[100];
     int  choice;
 
@@ -23,11 +23,10 @@ int main(void)
 
         switch (choice)
         {
-            /* ---------- 1. ADD SUPPLIER ---------- */
             case 1:
                 printf("Enter supplier name: ");
-                scanf(" %[^\n]", tempName);       /* read full line with spaces */
-                strcpy(supplierName, tempName);   /* copy into stored array   */
+                scanf(" %[^\n]", tempName);       
+                strcpy(supplierName, tempName);   
 
                 printf("Enter supplier code: ");
                 scanf(" %[^\n]", tempName);
@@ -36,7 +35,6 @@ int main(void)
                 printf("Supplier added successfully.\n");
                 break;
 
-            /* ---------- 2. DISPLAY SUPPLIER ---------- */
             case 2:
                 if (strlen(supplierName) == 0)
                     printf("No supplier stored yet.\n");
@@ -48,7 +46,6 @@ int main(void)
                 }
                 break;
 
-            /* ---------- 3. SEARCH SUPPLIER ---------- */
             case 3:
                 if (strlen(supplierName) == 0)
                     printf("No supplier stored yet.\n");
@@ -65,7 +62,6 @@ int main(void)
                 }
                 break;
 
-            /* ---------- 4. SHOW NAME LENGTH ---------- */
             case 4:
                 if (strlen(supplierName) == 0)
                     printf("No supplier stored yet.\n");
@@ -76,7 +72,6 @@ int main(void)
                 }
                 break;
 
-            /* ---------- 5. EXIT ---------- */
             case 5:
                 printf("Exiting program. Goodbye!\n");
                 break;
